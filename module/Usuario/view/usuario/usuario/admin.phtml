@@ -1,0 +1,14 @@
+<script src="<?= $this->basePath('js/app/model/usuario.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/manager/usuario.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/controllers/usuario.js') ?>"></script>
+<section ng-controller="usuario">
+    <h1 id="titletop">Usuario</h1>
+    <hr class="hrtitle">
+    <button class="btn btn-success" ng-click="modal({}, true, 'Crear Usuario')">
+        Crear Usuario</button>
+
+    <div class="box-body"> 
+        <div id="grid1" ui-grid="gridUsuario" ui-grid-pagination class="grid"></div>
+    </div>
+</section>
+

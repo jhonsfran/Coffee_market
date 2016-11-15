@@ -1,0 +1,15 @@
+<script src="<?= $this->basePath('js/app/model/ubicacion.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/manager/ubicacion.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/controllers/ubicacion.js') ?>"></script>
+<section ng-controller="ubicacion as u">
+    <h1 id="titletop">Ubicación</h1>
+    <hr class="hrtitle">
+    <button class="btn btn-success" ng-click="modal({}, true, 'Crear Ubicación')">
+        Crear Ubicación</button>
+    <div class="box-body"> 
+        <div id="gridUbicacion" ui-grid="gridUbicacion" ui-grid-pagination class="grid"></div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,41 @@
+<script src="<?= $this->basePath('js/app/model/compra.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/manager/compra.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/controllers/compra.js') ?>"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabProducto" data-ref="producto" data-toggle="tab" class="title-tab"><b>Entrada de Mercancía</b></a></li>                    
+                <li><a href="#tabproveedor" data-ref="proveedor" data-toggle="tab">Proveedor</a></li>
+                <li><a href="#tabpedido" data-ref="pedido" data-toggle="tab">Pedido</a></li> 
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabProducto">
+                    <section ng-controller="compra">
+                        <h1 id="titletop">Entrada de Mercancía</h1>
+                        <hr class="hrtitle">
+                        <button class="btn btn-success" ng-click="modal({}, true, 'Crear Entrada')">
+                            Crear Entrada</button>
+                        <div class="box-body"> 
+                            <div id="gridcompra" ui-grid="gridCompra" ui-grid-pagination class="grid"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane" id="tabproveedor">
+                    <?= $this->partialProveedor; ?>
+                </div>
+                <div class="tab-pane" id="tabpedido">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="ui-select-single-async-search.html">
+     <ui-select data-ng-model="model[options.key]" data-required="{{to.required}}" data-disabled="{{to.disabled}}" theme="bootstrap">
+        <ui-select-match placeholder="{{to.placeholder}}">{{$select.selected[to.labelProp]}}</ui-select-match>
+        <ui-select-choices data-repeat="{{to.ngOptions}}" data-refresh="to.refresh($select.search, options)" data-refresh-delay="{{to.refreshDelay}}">
+          <div ng-bind-html="option[to.labelProp] | highlight: $select.search"></div>         
+        </ui-select-choices>
+      </ui-select>
+</script>

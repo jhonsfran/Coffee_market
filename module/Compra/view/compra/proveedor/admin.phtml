@@ -1,0 +1,15 @@
+<script src="<?= $this->basePath('js/app/model/proveedor.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/manager/proveedor.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/controllers/proveedor.js') ?>"></script>
+<section ng-controller="proveedor">
+    <h1 id="titletop">Proveedor</h1>
+    <hr class="hrtitle">
+    <button class="btn btn-success" ng-click="modal({}, true, 'Crear Proveedor')">
+        Crear Proveedor</button>
+    <div class="box-body"> 
+        <div id="gridProveedor" ui-grid="gridProveedor" ui-grid-pagination class="grid"></div>
+    </div>
+</section>
+
+
+

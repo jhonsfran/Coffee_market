@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<div class="ui-grid-cell-contents">
+    <button ng-show="grid.appScope.actualizar" type="button"
+            class="btn btn-xs btn-default"
+            ng-click="grid.appScope.editRow(grid, row)" 
+            data-toggle="tooltip" 
+            data-placement="bottom" 
+            title="Editar">
+        <i class="glyphicon glyphicon-pencil" ></i>
+    </button>
+    <button ng-show="grid.appScope.password" type="button"
+            class="btn btn-xs btn-default"
+            ng-click="grid.appScope.sesionRow(grid, row)" 
+            data-toggle="tooltip" 
+            data-placement="bottom" 
+            title="Cambio Contraseña">
+        <i class="fa fa-key" ></i>
+    </button>
+    <button ng-show="grid.appScope.estado && row.entity.estado" type="button"
+            class="btn btn-xs btn btn-success"
+            ng-click="grid.appScope.estadoRow(grid, row)" 
+            data-toggle="tooltip" 
+            data-placement="bottom" 
+            title="Activo">
+        <i class="glyphicon glyphicon-ok-circle" ></i>
+    </button>
+    <button ng-show="grid.appScope.estado && !row.entity.estado" type="button"
+            class="btn btn-xs btn btn-danger"
+            ng-click="grid.appScope.estadoRow(grid, row)" 
+            data-toggle="tooltip" 
+            data-placement="bottom" 
+            title="Inactivo">
+        <i class="glyphicon glyphicon-ban-circle" ></i>
+    </button>
+    
+</div>

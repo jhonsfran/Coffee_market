@@ -1,0 +1,30 @@
+<script src="<?= $this->basePath('js/app/model/producto.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/manager/producto.js') ?>"></script>
+<script src="<?= $this->basePath('js/app/controllers/producto.js') ?>"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabProducto" data-ref="producto" data-toggle="tab" class="title-tab"><b>Producto</b></a></li>                    
+                <li><a href="#tabUbicacion" data-ref="ubicacion" data-toggle="tab">Ubicación</a></li>                
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabProducto">
+                    <section ng-controller="producto as p">
+                        <h1 id="titletop">Producto</h1>
+                        <hr class="hrtitle">
+                        <button class="btn btn-success" ng-click="modal({}, true, 'Crear Producto')">
+                            Crear Producto</button>
+                        <div class="box-body"> 
+                            <div id="gridproducto" ui-grid="gridProducto" ui-grid-pagination class="grid"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane" id="tabUbicacion">
+                    <?= $this->partialUbicacion; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
