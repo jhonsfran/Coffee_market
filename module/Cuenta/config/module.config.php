@@ -62,10 +62,11 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Cuenta\Controller\Login' => 'Cuenta\Controller\LoginController',
-            'Cuenta\Controller\Register' => 'Cuenta\Controller\RegisterController'
-        ),
+        //'invokables' => array(
+            //'Cuenta\Controller\Login' => 'Cuenta\Controller\LoginController',
+            //'Cuenta\Controller\Register' => 'Cuenta\Controller\RegisterController',
+            //'Cuenta\Controller\Olvide' => 'Cuenta\Controller\OlvideController'
+        //),
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -75,7 +76,9 @@ return array(
         'exception_template' => 'error/index',
         'template_map' => array(
             'cuenta/login/index' => __DIR__ . '/../view/cuenta/login/index.phtml',
+            'cuenta/login/error' => __DIR__ . '/../view/error/access.phtml',
             'cuenta/register/index' => __DIR__ . '/../view/cuenta/register/index.phtml',
+            'cuenta/olvide/index' => __DIR__ . '/../view/cuenta/olvide/index.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml',
         ),

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="<?= $this->basePath('social/dist/css/AdminLTE.min.css') ?>">
+
+<!-- Automatic element centering -->
+<div id="olvide" class="lockscreen-wrapper">
+  <div class="lockscreen-logo">
+    <a href="../../index2.html"><b>Coffee</b>Market</a><br>
+  </div>
+
+  <!-- START LOCK SCREEN ITEM -->
+  <div class="lockscreen-item">
+    <!-- lockscreen image -->
+    <div class="lockscreen-image">
+      <img src="<?= $this->basePath('social/dist/img/cafe.jpg') ?>" alt="User Image">
+    </div>
+    <!-- /.lockscreen-image -->
+
+    <!-- lockscreen credentials (contains the form) -->
+    <form class="lockscreen-credentials">
+      <div class="input-group">
+        <input id="username" type="text" class="form-control" placeholder="username">
+
+        <div class="input-group-btn">
+          <button id="semeolvido" type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
+        </div>
+
+      </div>
+    </form>
+    <!-- /.lockscreen credentials -->
+
+  </div>
+  <!-- /.lockscreen-item -->
+  <div class="help-block text-center">
+    Digite su correo electrónico, su nueva clave será enviada al correo asociado a su cuenta
+  </div>
+</div>

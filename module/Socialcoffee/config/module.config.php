@@ -62,9 +62,9 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Socialcoffee\Controller\Index' => 'Socialcoffee\Controller\IndexController'
-        ),
+        //'invokables' => array(
+            //'Socialcoffee\Controller\Index' => 'Socialcoffee\Controller\IndexController'
+        //),
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
@@ -84,11 +84,6 @@ return array(
         'strategies' => array(
             'ViewJsonStrategy',
         ),
-    ),
-
-    'module_layouts' => array(
-                'Application' => 'layout/layout',
-                'Socialcoffee' => 'socialcoffee/layout',
     ),
 
     // Placeholder for console routes

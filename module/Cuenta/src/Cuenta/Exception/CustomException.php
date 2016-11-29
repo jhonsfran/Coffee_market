@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Exception;
+namespace Cuenta\Exception;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,11 +11,11 @@ namespace Application\Exception;
 /**
  * Description of CustomBDException
  *
- * @author andres
+ * @author jhoan
  */
 
 
-class CustomException extends \Exception {
+class CustomException extends Exception {
 
     // Redefine the exception so message isn't optional
     public function __construct($message, $code = 0) {

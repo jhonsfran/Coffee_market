@@ -9,11 +9,24 @@
 
 namespace Socialcoffee;
 
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Socialcoffee\Controller\IndexController;
 
-class Module
+class Module implements AutoloaderProviderInterface 
 {
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -28,14 +41,13 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
-    {
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+    public function getControllerConfig() {
+            return array(
+                'factories' => array(
+                    'Socialcoffee\Controller\Index' => function ($sm) {
+                        return new IndexController($sm->getServiceLocator()->get('Doctrine\ORM\EntityManager'));
+                    },
                 ),
-            ),
-        );
-    }
+            );
+        }
 }

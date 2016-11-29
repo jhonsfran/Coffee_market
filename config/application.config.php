@@ -11,7 +11,7 @@ return array(
         'Socialcoffee',
         'Application',
         'Cuenta',
-        //'ORM',
+        'ORM',
         //'Usuario',
         //'Producto',
         //'Compra',

@@ -6,7 +6,7 @@ namespace ORM\Repository;
  *
  * @author Art
  */
-use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Entity;
 use ORM\Help\HelpQuery;
 
 class ProductoRepository extends EntityRepository {

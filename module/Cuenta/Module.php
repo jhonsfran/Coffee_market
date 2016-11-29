@@ -9,11 +9,27 @@
 
 namespace Cuenta;
 
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Cuenta\Controller\LoginController;
+use Cuenta\Controller\OlvideController;
+use Cuenta\Controller\RegisterController;
 
-class Module
+class Module implements AutoloaderProviderInterface 
 {
+
+    public function getAutoloaderConfig()
+    {
+        return array(
+            'Zend\Loader\StandardAutoloader' => array(
+                'namespaces' => array(
+                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                ),
+            ),
+        );
+    }
+    
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -28,13 +44,18 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
-    {
+    public function getControllerConfig() {
         return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
+            'factories' => array(
+                'Cuenta\Controller\Login' => function ($sm) {
+                    return new LoginController($sm->getServiceLocator()->get('Doctrine\ORM\EntityManager'));
+                },
+                'Cuenta\Controller\Olvide' => function ($sm) {
+                    return new OlvideController($sm->getServiceLocator()->get('Doctrine\ORM\EntityManager'));
+                },
+                'Cuenta\Controller\Register' => function ($sm) {
+                    return new RegisterController($sm->getServiceLocator()->get('Doctrine\ORM\EntityManager'));
+                },
             ),
         );
     }
