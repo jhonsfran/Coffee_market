@@ -164,11 +164,18 @@ class IndexController extends AbstractActionController {
     }
 
     public function salirAction() {
+
     	$session = new Container('user');
 		unset($session->username);
-    	Zend_Session::namespaceUnset('mysession');
-    	Zend_Session::destroy();
-		
+        session_destroy();
+
+
+		//si no está logeado se redirecciona a una página de error
+		$uri = $this->getRequest()->getUri();
+		$url = strstr($uri, "socialcoffee", true);
+
+		return $this->redirect()->toUrl($url.'cuenta/login/index');
+
     }
 
     /*

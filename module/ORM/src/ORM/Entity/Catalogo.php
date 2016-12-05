@@ -1,8 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -56,40 +56,16 @@ class Catalogo
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Compra", inversedBy="catalogoCompraCatalogo")
-     * @ORM\JoinTable(name="catalogo_compra",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="catalogo_compra_id_catalogo", referencedColumnName="catalogo_id_catalogo")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="catalogo_compra_id_compra", referencedColumnName="compra_id_compra")
-     *   }
-     * )
+     * @ORM\ManyToMany(targetEntity="Usuario", mappedBy="agregarDeseoCatalogoCatalogo")
      */
-    private $catalogoCompraCompra;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="usuariocatCatalogo")
-     * @ORM\JoinTable(name="usuario_catalogo",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="usuariocat_id_catalogo", referencedColumnName="catalogo_id_catalogo")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="usuariocat_nickname", referencedColumnName="usuario_nickname")
-     *   }
-     * )
-     */
-    private $usuariocatNickname;
+    private $agregarDeseoUser;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->catalogoCompraCompra = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->usuariocatNickname = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->agregarDeseoUser = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -199,71 +175,37 @@ class Catalogo
     }
 
     /**
-     * Add catalogoCompraCompra
+     * Add agregarDeseoUser
      *
-     * @param \Compra $catalogoCompraCompra
+     * @param \Usuario $agregarDeseoUser
      *
      * @return Catalogo
      */
-    public function addCatalogoCompraCompra(\Compra $catalogoCompraCompra)
+    public function addAgregarDeseoUser(\Usuario $agregarDeseoUser)
     {
-        $this->catalogoCompraCompra[] = $catalogoCompraCompra;
+        $this->agregarDeseoUser[] = $agregarDeseoUser;
     
         return $this;
     }
 
     /**
-     * Remove catalogoCompraCompra
+     * Remove agregarDeseoUser
      *
-     * @param \Compra $catalogoCompraCompra
+     * @param \Usuario $agregarDeseoUser
      */
-    public function removeCatalogoCompraCompra(\Compra $catalogoCompraCompra)
+    public function removeAgregarDeseoUser(\Usuario $agregarDeseoUser)
     {
-        $this->catalogoCompraCompra->removeElement($catalogoCompraCompra);
+        $this->agregarDeseoUser->removeElement($agregarDeseoUser);
     }
 
     /**
-     * Get catalogoCompraCompra
+     * Get agregarDeseoUser
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCatalogoCompraCompra()
+    public function getAgregarDeseoUser()
     {
-        return $this->catalogoCompraCompra;
-    }
-
-    /**
-     * Add usuariocatNickname
-     *
-     * @param \Usuario $usuariocatNickname
-     *
-     * @return Catalogo
-     */
-    public function addUsuariocatNickname(\Usuario $usuariocatNickname)
-    {
-        $this->usuariocatNickname[] = $usuariocatNickname;
-    
-        return $this;
-    }
-
-    /**
-     * Remove usuariocatNickname
-     *
-     * @param \Usuario $usuariocatNickname
-     */
-    public function removeUsuariocatNickname(\Usuario $usuariocatNickname)
-    {
-        $this->usuariocatNickname->removeElement($usuariocatNickname);
-    }
-
-    /**
-     * Get usuariocatNickname
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsuariocatNickname()
-    {
-        return $this->usuariocatNickname;
+        return $this->agregarDeseoUser;
     }
 }
 

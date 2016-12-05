@@ -53,6 +53,8 @@
 
           ->prependStylesheet($this->basePath('landing_page/css/pace-theme-flash.css'))
 
+          ->prependStylesheet($this->basePath('social/plugins/select2/select2.css'))
+
           ?>
 
           <?= $this->headScript()
@@ -334,7 +336,7 @@
                           <a href="#" class="btn btn-default btn-flat">Perfil</a>
                         </div>
                         <div class="pull-right">
-                          <a href="#" class="btn btn-default btn-flat">Salir</a>
+                          <a href="<?= $this->basePath('socialcoffee/index/salir') ?>" class="btn btn-default btn-flat">Salir</a>
                         </div>
                       </li>
                     </ul>
@@ -623,6 +625,7 @@
           <script src="<?= $this->basePath('js/toastr/toastr.js') ?>"></script>
           <script src="<?= $this->basePath('js/controllers/httpPetition.js') ?>"></script>
           <script src="<?= $this->basePath('js/controllers/toast.js') ?>"></script>
+          <script src="<?= $this->basePath('social/plugins/select2.js') ?>"></script>
 
           <script src="<?= $this->basePath('js/controllers/Define.js') ?>" ></script>
           <script src="<?= $this->basePath('js/controllers/socialcoffee.js') ?>" ></script>

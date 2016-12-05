@@ -2,17 +2,14 @@
 
 namespace ORM\Entity;
 
-
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario")
- * @ORM\Entity(repositoryClass="ORM\Repository\UsuarioRepository")
+ * @ORM\Table(name="usuario", indexes={@ORM\Index(name="IDX_2265B05DE7CF793E", columns={"usuario_cuentaban_nro_cuenta"})})
+ * @ORM\Entity(repositoryClass="ORM\Repository\CuentaRepository")
+  * @ORM\Entity(repositoryClass="ORM\Repository\UsuarioRepository")
  */
 class Usuario
 {
@@ -21,8 +18,6 @@ class Usuario
      *
      * @ORM\Column(name="usuario_nickname", type="string", length=50, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="usuario_usuario_nickname_seq", allocationSize=1, initialValue=1)
      */
     private $usuarioNickname;
 
@@ -76,6 +71,38 @@ class Usuario
     private $usuarioFechaRegistro;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_foto_perfil", type="string", length=250, nullable=false)
+     */
+    private $usuarioFotoPerfil;
+
+    /**
+     * @var \CuentaBancaria
+     *
+     * @ORM\ManyToOne(targetEntity="CuentaBancaria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_cuentaban_nro_cuenta", referencedColumnName="cuentaban_nro_cuenta")
+     * })
+     */
+    private $usuarioCuentabanNroCuenta;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Catalogo", inversedBy="agregarDeseoUser")
+     * @ORM\JoinTable(name="agregar_deseo",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="agregar_deseo_user", referencedColumnName="usuario_nickname")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="agregar_deseo_catalogo_id_catalogo", referencedColumnName="catalogo_id_catalogo")
+     *   }
+     * )
+     */
+    private $agregarDeseoCatalogoCatalogo;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="CompartirCompra", inversedBy="usuarioMeGustaNickname")
@@ -91,27 +118,12 @@ class Usuario
     private $meGustaCompartirCompartir;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Catalogo", mappedBy="usuariocatNickname")
-     */
-    private $usuariocatCatalogo;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Compra", mappedBy="usuarioCompraNickname")
-     */
-    private $usuarioCompraCompra;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->agregarDeseoCatalogoCatalogo = new \Doctrine\Common\Collections\ArrayCollection();
         $this->meGustaCompartirCompartir = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->usuariocatCatalogo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->usuarioCompraCompra = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -122,6 +134,18 @@ class Usuario
     public function getUsuarioNickname()
     {
         return $this->usuarioNickname;
+    }
+
+    /**
+     * Set usuarioNickname
+     *
+     * @return string
+     */
+    public function setUsuarioNickname($usuarioNickname)
+    {
+        $this->usuarioNickname = $usuarioNickname;
+        
+        return $this;
     }
 
     /**
@@ -293,6 +317,88 @@ class Usuario
     }
 
     /**
+     * Set usuarioFotoPerfil
+     *
+     * @param string $usuarioFotoPerfil
+     *
+     * @return Usuario
+     */
+    public function setUsuarioFotoPerfil($usuarioFotoPerfil)
+    {
+        $this->usuarioFotoPerfil = $usuarioFotoPerfil;
+    
+        return $this;
+    }
+
+    /**
+     * Get usuarioFotoPerfil
+     *
+     * @return string
+     */
+    public function getUsuarioFotoPerfil()
+    {
+        return $this->usuarioFotoPerfil;
+    }
+
+    /**
+     * Set usuarioCuentabanNroCuenta
+     *
+     * @param \CuentaBancaria $usuarioCuentabanNroCuenta
+     *
+     * @return Usuario
+     */
+    public function setUsuarioCuentabanNroCuenta(CuentaBancaria $usuarioCuentabanNroCuenta = null)
+    {
+        $this->usuarioCuentabanNroCuenta = $usuarioCuentabanNroCuenta;
+    
+        return $this;
+    }
+
+    /**
+     * Get usuarioCuentabanNroCuenta
+     *
+     * @return \CuentaBancaria
+     */
+    public function getUsuarioCuentabanNroCuenta()
+    {
+        return $this->usuarioCuentabanNroCuenta;
+    }
+
+    /**
+     * Add agregarDeseoCatalogoCatalogo
+     *
+     * @param \Catalogo $agregarDeseoCatalogoCatalogo
+     *
+     * @return Usuario
+     */
+    public function addAgregarDeseoCatalogoCatalogo(\Catalogo $agregarDeseoCatalogoCatalogo)
+    {
+        $this->agregarDeseoCatalogoCatalogo[] = $agregarDeseoCatalogoCatalogo;
+    
+        return $this;
+    }
+
+    /**
+     * Remove agregarDeseoCatalogoCatalogo
+     *
+     * @param \Catalogo $agregarDeseoCatalogoCatalogo
+     */
+    public function removeAgregarDeseoCatalogoCatalogo(\Catalogo $agregarDeseoCatalogoCatalogo)
+    {
+        $this->agregarDeseoCatalogoCatalogo->removeElement($agregarDeseoCatalogoCatalogo);
+    }
+
+    /**
+     * Get agregarDeseoCatalogoCatalogo
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAgregarDeseoCatalogoCatalogo()
+    {
+        return $this->agregarDeseoCatalogoCatalogo;
+    }
+
+    /**
      * Add meGustaCompartirCompartir
      *
      * @param \CompartirCompra $meGustaCompartirCompartir
@@ -324,74 +430,6 @@ class Usuario
     public function getMeGustaCompartirCompartir()
     {
         return $this->meGustaCompartirCompartir;
-    }
-
-    /**
-     * Add usuariocatCatalogo
-     *
-     * @param \Catalogo $usuariocatCatalogo
-     *
-     * @return Usuario
-     */
-    public function addUsuariocatCatalogo(\Catalogo $usuariocatCatalogo)
-    {
-        $this->usuariocatCatalogo[] = $usuariocatCatalogo;
-    
-        return $this;
-    }
-
-    /**
-     * Remove usuariocatCatalogo
-     *
-     * @param \Catalogo $usuariocatCatalogo
-     */
-    public function removeUsuariocatCatalogo(\Catalogo $usuariocatCatalogo)
-    {
-        $this->usuariocatCatalogo->removeElement($usuariocatCatalogo);
-    }
-
-    /**
-     * Get usuariocatCatalogo
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsuariocatCatalogo()
-    {
-        return $this->usuariocatCatalogo;
-    }
-
-    /**
-     * Add usuarioCompraCompra
-     *
-     * @param \Compra $usuarioCompraCompra
-     *
-     * @return Usuario
-     */
-    public function addUsuarioCompraCompra(\Compra $usuarioCompraCompra)
-    {
-        $this->usuarioCompraCompra[] = $usuarioCompraCompra;
-    
-        return $this;
-    }
-
-    /**
-     * Remove usuarioCompraCompra
-     *
-     * @param \Compra $usuarioCompraCompra
-     */
-    public function removeUsuarioCompraCompra(\Compra $usuarioCompraCompra)
-    {
-        $this->usuarioCompraCompra->removeElement($usuarioCompraCompra);
-    }
-
-    /**
-     * Get usuarioCompraCompra
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsuarioCompraCompra()
-    {
-        return $this->usuarioCompraCompra;
     }
 }
 

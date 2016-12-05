@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Rol
  *
  * @ORM\Table(name="rol")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ORM\Repository\CuentaRepository")
  */
 class Rol
 {

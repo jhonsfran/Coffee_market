@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CuentaBancaria
  *
- * @ORM\Table(name="cuenta_bancaria", indexes={@ORM\Index(name="IDX_ECD0C9CED7DE15F4", columns={"cuentaban_usr_nickname"})})
- * @ORM\Entity
+ * @ORM\Table(name="cuenta_bancaria")
+ * @ORM\Entity(repositoryClass="ORM\Repository\CuentaBancariaRepository")
  */
 class CuentaBancaria
 {
@@ -18,8 +20,6 @@ class CuentaBancaria
      *
      * @ORM\Column(name="cuentaban_nro_cuenta", type="decimal", precision=10, scale=0, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="cuenta_bancaria_cuentaban_nro_cuenta_seq", allocationSize=1, initialValue=1)
      */
     private $cuentabanNroCuenta;
 
@@ -40,13 +40,6 @@ class CuentaBancaria
     /**
      * @var string
      *
-     * @ORM\Column(name="cuentaban_ciudad", type="string", length=80, nullable=false)
-     */
-    private $cuentabanCiudad;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="cuentaban_codigo_postal", type="decimal", precision=10, scale=0, nullable=false)
      */
     private $cuentabanCodigoPostal;
@@ -58,16 +51,6 @@ class CuentaBancaria
      */
     private $cuentabanPais;
 
-    /**
-     * @var \Usuario
-     *
-     * @ORM\ManyToOne(targetEntity="Usuario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cuentaban_usr_nickname", referencedColumnName="usuario_nickname")
-     * })
-     */
-    private $cuentabanUsrNickname;
-
 
     /**
      * Get cuentabanNroCuenta
@@ -77,6 +60,20 @@ class CuentaBancaria
     public function getCuentabanNroCuenta()
     {
         return $this->cuentabanNroCuenta;
+    }
+
+    /**
+     * Set cuentabanNroCuenta
+     *
+     * @param string $cuentabanNroCuenta
+     *
+     * @return CuentaBancaria
+     */
+    public function setCuentabanNroCuenta($cuentabanNroCuenta)
+    {
+        $this->cuentabanNroCuenta = $cuentabanNroCuenta;
+    
+        return $this;
     }
 
     /**
@@ -128,30 +125,6 @@ class CuentaBancaria
     }
 
     /**
-     * Set cuentabanCiudad
-     *
-     * @param string $cuentabanCiudad
-     *
-     * @return CuentaBancaria
-     */
-    public function setCuentabanCiudad($cuentabanCiudad)
-    {
-        $this->cuentabanCiudad = $cuentabanCiudad;
-    
-        return $this;
-    }
-
-    /**
-     * Get cuentabanCiudad
-     *
-     * @return string
-     */
-    public function getCuentabanCiudad()
-    {
-        return $this->cuentabanCiudad;
-    }
-
-    /**
      * Set cuentabanCodigoPostal
      *
      * @param string $cuentabanCodigoPostal
@@ -197,30 +170,6 @@ class CuentaBancaria
     public function getCuentabanPais()
     {
         return $this->cuentabanPais;
-    }
-
-    /**
-     * Set cuentabanUsrNickname
-     *
-     * @param \Usuario $cuentabanUsrNickname
-     *
-     * @return CuentaBancaria
-     */
-    public function setCuentabanUsrNickname(\Usuario $cuentabanUsrNickname = null)
-    {
-        $this->cuentabanUsrNickname = $cuentabanUsrNickname;
-    
-        return $this;
-    }
-
-    /**
-     * Get cuentabanUsrNickname
-     *
-     * @return \Usuario
-     */
-    public function getCuentabanUsrNickname()
-    {
-        return $this->cuentabanUsrNickname;
     }
 }
 

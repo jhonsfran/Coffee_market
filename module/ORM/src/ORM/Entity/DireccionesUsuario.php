@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DireccionesUsuario
  *
- * @ORM\Table(name="direcciones_usuario")
+ * @ORM\Table(name="direcciones_usuario", indexes={@ORM\Index(name="IDX_BA625DD525E9710", columns={"dirusuario_nickname"})})
  * @ORM\Entity
  */
 class DireccionesUsuario
@@ -17,6 +19,8 @@ class DireccionesUsuario
      * @var string
      *
      * @ORM\Column(name="dir_direccion", type="string", length=100, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $dirDireccion;
 

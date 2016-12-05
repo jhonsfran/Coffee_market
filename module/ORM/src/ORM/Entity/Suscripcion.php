@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Suscripcion
  *
- * @ORM\Table(name="suscripcion")
- * @ORM\Entity
+ * @ORM\Table(name="suscripcion", indexes={@ORM\Index(name="IDX_497FA01BACFB98", columns={"suscripcion_producto_id_producto"})})
+ * @ORM\Entity(repositoryClass="ORM\Repository\CuentaRepository")
  */
 class Suscripcion
 {
@@ -38,19 +40,15 @@ class Suscripcion
     private $suscripcionEstado;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Producto
      *
-     * @ORM\ManyToMany(targetEntity="Producto", mappedBy="productoSuscripcionSuscripcion")
+     * @ORM\ManyToOne(targetEntity="Producto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="suscripcion_producto_id_producto", referencedColumnName="producto_id_producto")
+     * })
      */
-    private $productoSuscripcionProducto;
+    private $suscripcionProductoProducto;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->productoSuscripcionProducto = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get suscripcionIdSuscripcion
@@ -111,37 +109,27 @@ class Suscripcion
     }
 
     /**
-     * Add productoSuscripcionProducto
+     * Set suscripcionProductoProducto
      *
-     * @param \Producto $productoSuscripcionProducto
+     * @param \Producto $suscripcionProductoProducto
      *
      * @return Suscripcion
      */
-    public function addProductoSuscripcionProducto(\Producto $productoSuscripcionProducto)
+    public function setSuscripcionProductoProducto(\Producto $suscripcionProductoProducto = null)
     {
-        $this->productoSuscripcionProducto[] = $productoSuscripcionProducto;
+        $this->suscripcionProductoProducto = $suscripcionProductoProducto;
     
         return $this;
     }
 
     /**
-     * Remove productoSuscripcionProducto
+     * Get suscripcionProductoProducto
      *
-     * @param \Producto $productoSuscripcionProducto
+     * @return \Producto
      */
-    public function removeProductoSuscripcionProducto(\Producto $productoSuscripcionProducto)
+    public function getSuscripcionProductoProducto()
     {
-        $this->productoSuscripcionProducto->removeElement($productoSuscripcionProducto);
-    }
-
-    /**
-     * Get productoSuscripcionProducto
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProductoSuscripcionProducto()
-    {
-        return $this->productoSuscripcionProducto;
+        return $this->suscripcionProductoProducto;
     }
 }
 

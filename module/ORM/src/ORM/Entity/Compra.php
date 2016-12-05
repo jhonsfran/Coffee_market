@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Compra
  *
- * @ORM\Table(name="compra")
+ * @ORM\Table(name="compra", indexes={@ORM\Index(name="IDX_9EC131FFF337B883", columns={"catalogo_compra_id_catalogo"}), @ORM\Index(name="IDX_9EC131FFCAC75F43", columns={"domicilio_compra_id_domicilio"}), @ORM\Index(name="IDX_9EC131FF27D224E1", columns={"usuario_compra_nickname"})})
  * @ORM\Entity
  */
 class Compra
@@ -38,35 +40,35 @@ class Compra
     private $compraFecha;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Catalogo
      *
-     * @ORM\ManyToMany(targetEntity="Catalogo", mappedBy="catalogoCompraCompra")
+     * @ORM\ManyToOne(targetEntity="Catalogo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="catalogo_compra_id_catalogo", referencedColumnName="catalogo_id_catalogo")
+     * })
      */
     private $catalogoCompraCatalogo;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Domicilio
      *
-     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="usuarioCompraCompra")
-     * @ORM\JoinTable(name="usuario_compra",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="usuario_compra_id_compra", referencedColumnName="compra_id_compra")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="usuario_compra_nickname", referencedColumnName="usuario_nickname")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Domicilio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="domicilio_compra_id_domicilio", referencedColumnName="domicilio_id_domicilio")
+     * })
+     */
+    private $domicilioCompraDomicilio;
+
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="usuario_compra_nickname", referencedColumnName="usuario_nickname")
+     * })
      */
     private $usuarioCompraNickname;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->catalogoCompraCatalogo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->usuarioCompraNickname = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get compraIdCompra
@@ -127,33 +129,23 @@ class Compra
     }
 
     /**
-     * Add catalogoCompraCatalogo
+     * Set catalogoCompraCatalogo
      *
      * @param \Catalogo $catalogoCompraCatalogo
      *
      * @return Compra
      */
-    public function addCatalogoCompraCatalogo(\Catalogo $catalogoCompraCatalogo)
+    public function setCatalogoCompraCatalogo(\Catalogo $catalogoCompraCatalogo = null)
     {
-        $this->catalogoCompraCatalogo[] = $catalogoCompraCatalogo;
+        $this->catalogoCompraCatalogo = $catalogoCompraCatalogo;
     
         return $this;
     }
 
     /**
-     * Remove catalogoCompraCatalogo
-     *
-     * @param \Catalogo $catalogoCompraCatalogo
-     */
-    public function removeCatalogoCompraCatalogo(\Catalogo $catalogoCompraCatalogo)
-    {
-        $this->catalogoCompraCatalogo->removeElement($catalogoCompraCatalogo);
-    }
-
-    /**
      * Get catalogoCompraCatalogo
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Catalogo
      */
     public function getCatalogoCompraCatalogo()
     {
@@ -161,33 +153,47 @@ class Compra
     }
 
     /**
-     * Add usuarioCompraNickname
+     * Set domicilioCompraDomicilio
      *
-     * @param \Usuario $usuarioCompraNickname
+     * @param \Domicilio $domicilioCompraDomicilio
      *
      * @return Compra
      */
-    public function addUsuarioCompraNickname(\Usuario $usuarioCompraNickname)
+    public function setDomicilioCompraDomicilio(\Domicilio $domicilioCompraDomicilio = null)
     {
-        $this->usuarioCompraNickname[] = $usuarioCompraNickname;
+        $this->domicilioCompraDomicilio = $domicilioCompraDomicilio;
     
         return $this;
     }
 
     /**
-     * Remove usuarioCompraNickname
+     * Get domicilioCompraDomicilio
+     *
+     * @return \Domicilio
+     */
+    public function getDomicilioCompraDomicilio()
+    {
+        return $this->domicilioCompraDomicilio;
+    }
+
+    /**
+     * Set usuarioCompraNickname
      *
      * @param \Usuario $usuarioCompraNickname
+     *
+     * @return Compra
      */
-    public function removeUsuarioCompraNickname(\Usuario $usuarioCompraNickname)
+    public function setUsuarioCompraNickname(\Usuario $usuarioCompraNickname = null)
     {
-        $this->usuarioCompraNickname->removeElement($usuarioCompraNickname);
+        $this->usuarioCompraNickname = $usuarioCompraNickname;
+    
+        return $this;
     }
 
     /**
      * Get usuarioCompraNickname
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Usuario
      */
     public function getUsuarioCompraNickname()
     {

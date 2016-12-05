@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Domicilio
  *
- * @ORM\Table(name="domicilio", indexes={@ORM\Index(name="IDX_9B942ED1E7BD8AF6", columns={"domicilio_compra_id_compra"})})
+ * @ORM\Table(name="domicilio")
  * @ORM\Entity
  */
 class Domicilio
@@ -50,16 +52,6 @@ class Domicilio
      * @ORM\Column(name="domicilio_fecha_salida", type="date", nullable=false)
      */
     private $domicilioFechaSalida;
-
-    /**
-     * @var \Compra
-     *
-     * @ORM\ManyToOne(targetEntity="Compra")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="domicilio_compra_id_compra", referencedColumnName="compra_id_compra")
-     * })
-     */
-    private $domicilioCompraCompra;
 
 
     /**
@@ -166,30 +158,6 @@ class Domicilio
     public function getDomicilioFechaSalida()
     {
         return $this->domicilioFechaSalida;
-    }
-
-    /**
-     * Set domicilioCompraCompra
-     *
-     * @param \Compra $domicilioCompraCompra
-     *
-     * @return Domicilio
-     */
-    public function setDomicilioCompraCompra(\Compra $domicilioCompraCompra = null)
-    {
-        $this->domicilioCompraCompra = $domicilioCompraCompra;
-    
-        return $this;
-    }
-
-    /**
-     * Get domicilioCompraCompra
-     *
-     * @return \Compra
-     */
-    public function getDomicilioCompraCompra()
-    {
-        return $this->domicilioCompraCompra;
     }
 }
 

@@ -1,6 +1,8 @@
 <?php
 
+
 namespace ORM\Entity;
+
 
 
 use Doctrine\ORM\Mapping as ORM;
@@ -74,27 +76,11 @@ class Producto
     private $otroTipoOtroTipo;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Suscripcion", inversedBy="productoSuscripcionProducto")
-     * @ORM\JoinTable(name="suscripcion_producto",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="producto_suscripcion_id_producto", referencedColumnName="producto_id_producto")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="producto_suscripcion_id_suscripcion", referencedColumnName="suscripcion_id_suscripcion")
-     *   }
-     * )
-     */
-    private $productoSuscripcionSuscripcion;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->otroTipoOtroTipo = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->productoSuscripcionSuscripcion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -259,40 +245,6 @@ class Producto
     public function getOtroTipoOtroTipo()
     {
         return $this->otroTipoOtroTipo;
-    }
-
-    /**
-     * Add productoSuscripcionSuscripcion
-     *
-     * @param \Suscripcion $productoSuscripcionSuscripcion
-     *
-     * @return Producto
-     */
-    public function addProductoSuscripcionSuscripcion(\Suscripcion $productoSuscripcionSuscripcion)
-    {
-        $this->productoSuscripcionSuscripcion[] = $productoSuscripcionSuscripcion;
-    
-        return $this;
-    }
-
-    /**
-     * Remove productoSuscripcionSuscripcion
-     *
-     * @param \Suscripcion $productoSuscripcionSuscripcion
-     */
-    public function removeProductoSuscripcionSuscripcion(\Suscripcion $productoSuscripcionSuscripcion)
-    {
-        $this->productoSuscripcionSuscripcion->removeElement($productoSuscripcionSuscripcion);
-    }
-
-    /**
-     * Get productoSuscripcionSuscripcion
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProductoSuscripcionSuscripcion()
-    {
-        return $this->productoSuscripcionSuscripcion;
     }
 }
 

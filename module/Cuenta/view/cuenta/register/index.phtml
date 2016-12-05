@@ -1,377 +1,446 @@
-<!-- Suscripciones -->
-<section id="suscrip">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>SUSCRIPCIONES</h2>
-                <hr class="star-primary">
+<script src="<?= $this->basePath('social/plugins/fileinput/fileinput.js') ?>"></script>
+
+<div id="register">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" data-toggle="tab" role="tab" id="datos_basicos"><span class="glyphicon glyphicon-user" aria-hidden="false"></span>  Datos Básicos</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" id="pagos" ><span class="glyphicon glyphicon-shopping-cart" aria-hidden="false"></span>  Formas de Pago</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" id="perfil" ><span class="glyphicon glyphicon-picture" aria-hidden="false"></span>  Personaliza tu perfil</a></li>
+    <!--<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab" id="ultimo" ><span class="glyphicon glyphicon-hand-right" aria-hidden="false"></span>  Último paso</a></li>-->
+  </ul>
+
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="home">
+      <!-- Suscripciones -->
+      <section id="suscrip">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <h2>ELEGIR SUSCRIPCIONES</h2>
+                      <hr class="star-primary">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-sm-3 portfolio-item">
+                      <a href="#suscripModal1" class="portfolio-link" data-toggle="modal">
+                          <div class="caption" id="modal_probadita">
+                              <div class="caption-content">
+                                  <i class="fa fa-search-plus fa-3x"></i>
+                              </div>
+                          </div>
+                          <img src="<?= $this->basePath('landing_page/img/portfolio/game.png') ?>" class="img-responsive" alt="">
+                      </a>
+                  </div>
+                  <div class="col-sm-3 portfolio-item">
+                      <a href="#suscripModal2" class="portfolio-link" data-toggle="modal">
+                          <div class="caption" id="modal_casero">
+                              <div class="caption-content">
+                                  <i class="fa fa-search-plus fa-3x"></i>
+                              </div>
+                          </div>
+                          <img src="<?= $this->basePath('landing_page/img/portfolio/safe.png') ?>" class="img-responsive" alt="">
+                      </a>
+                  </div>
+                  <div class="col-sm-3 portfolio-item">
+                      <a href="#suscripModal3" class="portfolio-link" data-toggle="modal">
+                          <div class="caption" id="modal_empresarial">
+                              <div class="caption-content">
+                                  <i class="fa fa-search-plus fa-3x"></i>
+                              </div>
+                          </div>
+                          <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive" alt="">
+                      </a>
+                  </div>
+                  <div class="col-sm-3 portfolio-item">
+                      <a href="#suscripModal4" class="portfolio-link" data-toggle="modal">
+                          <div class="caption" id="modal_especial">
+                              <div class="caption-content">
+                                  <i class="fa fa-search-plus fa-3x"></i>
+                              </div>
+                          </div>
+                          <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive" alt="">
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="registro_user">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <h2>REGISTRO DE DATOS BÁSICOS</h2>
+                      <hr class="star-primary">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                      <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                      <form name="sentMessage" id="contactForm" validate>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Nickname</label>
+                                  <input type="text" class="form-control" placeholder="Ingresa un nombre de usuario o un alias" id="nickname" required data-validation-required-message="Ingresa un mobre de usuario.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Password</label>
+                                  <input type="password" class="form-control" placeholder="Ingresa el password" id="password" required data-validation-required-message="Ingresa el password de tu cuenta.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Nombres</label>
+                                  <input type="text" class="form-control" placeholder="Nombre" id="nombres" required data-validation-required-message="Ingresa tus nombres.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Apellidos</label>
+                                  <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" required data-validation-required-message="Por favor ingresa tus Apellidos.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Documento de Identidad</label>
+                                  <input type="num" class="form-control" placeholder="Documento de Identidad" id="documento" required data-validation-required-message="Por favor ingresa tu documento.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <br/>
+                          <div class="row">
+                            <h5>TIPO DE DOCUMENTO</h5><br/>
+                              <input type="radio" name="iCheck" id="cedula">
+                              <label>C.C.</label>
+
+                              &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <input type="radio" name="iCheck" id="tarjeta" checked >
+                              <label>TARJETA DE IDENTIDAD</label>
+
+                              &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+                              <input type="radio" name="iCheck" id="otro" checked >
+                              <label>OTRO</label>
+                          </div>
+                          <br/>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Email</label>
+                                  <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Ingresa tu mejor e-mail.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Teléfono</label>
+                                  <input type="tel" class="form-control" placeholder="Teléfono" id="telefono" required data-validation-required-message="Por favor ingresa tu teléfono.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div><div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Celular</label>
+                                  <input type="tel" class="form-control" placeholder="Celular" id="celular" required data-validation-required-message="Por favor ingresa tu celular.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Dirección</label>
+                                  <input type="text" class="form-control" placeholder="Dirección" id="direccion" required data-validation-required-message="Por favor ingresa tu Dirección.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <br>
+                          <div id="success"></div>
+                          <div class="row">
+                              <div class="form-group col-xs-12">
+                                  <button type="button" class="btn btn-success btn-lg" id="continuar1">Continuar <span class="glyphicon glyphicon-triangle-right" aria-hidden="false"></span></a></button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+      <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+      </div>
+
+      <!-- Suscrip Modals -->
+      <div class="portfolio-modal modal fade" id="suscripModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Probadita</h2>
+                            <hr class="star-primary">
+                            <img src="<?= $this->basePath('landing_page/img/portfolio/game.png') ?>" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+                            <br/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" value="1" id="suscripcion1"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp; Sí, me gusta esta opción</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3 portfolio-item">
-                <a href="#suscripModal1" class="portfolio-link" data-toggle="modal">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
-                        </div>
+      </div>
+      <div class="portfolio-modal modal fade" id="suscripModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
                     </div>
-                    <img src="<?= $this->basePath('landing_page/img/portfolio/game.png') ?>" class="img-responsive" alt="">
-                </a>
+                </div>
             </div>
-            <div class="col-sm-3 portfolio-item">
-                <a href="#suscripModal2" class="portfolio-link" data-toggle="modal">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Casero</h2>
+                            <hr class="star-primary">
+                            <img src="<?= $this->basePath('landing_page/img/portfolio/safe.png') ?>" class="img-responsive img-centered" alt="">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit nibh, vestibulum vel tempus at, convallis laoreet lorem. Cras scelerisque ornare pulvinar. Vestibulum eget turpis dignissim, accumsan massa sed, feugiat est. Nunc placerat, leo eu iaculis ullamcorper, turpis sapien semper purus, ac laoreet mi ante nec nunc. </p>
+
+                            <br/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" value="2" id="suscripcion2"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp; Sí, me gusta esta opción</button>
                         </div>
                     </div>
-                    <img src="<?= $this->basePath('landing_page/img/portfolio/safe.png') ?>" class="img-responsive" alt="">
-                </a>
-            </div>
-            <div class="col-sm-3 portfolio-item">
-                <a href="#suscripModal3" class="portfolio-link" data-toggle="modal">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive" alt="">
-                </a>
-            </div>
-            <div class="col-sm-3 portfolio-item">
-                <a href="#suscripModal4" class="portfolio-link" data-toggle="modal">
-                    <div class="caption">
-                        <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive" alt="">
-                </a>
+                </div>
             </div>
         </div>
+      </div>
+      <div class="portfolio-modal modal fade" id="suscripModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Empresarial</h2>
+                            <hr class="star-primary">
+                            <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive img-centered" alt="">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer elit nibh, vestibulum vel tempus at, convallis laoreet lorem. Cras scelerisque ornare pulvinar. Vestibulum eget turpis dignissim, accumsan massa sed, feugiat est. Nunc placerat, leo eu iaculis ullamcorper, turpis sapien semper purus, ac laoreet mi ante nec nunc. </p>
+
+                            <br/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" value="3" id="suscripcion3"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp; Sí, me gusta esta opción</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="portfolio-modal modal fade" id="suscripModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Especial</h2>
+                            <hr class="star-primary">
+                            <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+
+
+                            <br/>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" value="4" id="suscripcion4"><i class="fa fa-thumbs-up"></i>&nbsp;&nbsp; Sí, me gusta esta opción</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
     </div>
-</section>
 
-<!-- Contact Section -->
-<section id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Contacta con nosotros</h2>
-                <hr class="star-primary">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                <form name="sentMessage" id="contactForm" novalidate>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" placeholder="Nombre" id="name" required data-validation-required-message="Ingresa tu mejor nombre.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Email</label>
-                            <input type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Ingresa tu mejor e-mail.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Teléfono</label>
-                            <input type="tel" class="form-control" placeholder="Teléfono" id="phone" required data-validation-required-message="Por favor ingresa tu teléfono.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Mensaje</label>
-                            <textarea rows="5" class="form-control" placeholder="Mensaje" id="message" required data-validation-required-message="Por favor ingresa tu mensaje."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <br>
-                    <div id="success"></div>
-                    <div class="row">
-                        <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div role="tabpanel" class="tab-pane fade" id="profile">
+
+      <!-- Contact Section -->
+      <section id="registro_user">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12 text-center">
+                      <h2>REGISTRO DE ENTIDAD BANCARIA</h2>
+                      <hr class="star-primary">
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                      <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                      <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
+                      <form name="sentMessage" id="contactForm" validate>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Número de Cuenta</label>
+                                  <input type="text" class="form-control" placeholder="Número de Cuenta" id="num_cuenta" required data-validation-required-message="Ingresa el número de tu cuenta.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Nombre del Banco</label>
+                                  <input type="text" class="form-control" placeholder="Nombre del Banco" id="banco" required data-validation-required-message="Por favor ingresa el nombre del banco.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <br/>
+                          <div class="row control-group">
+                            <div class="col-xs-6">
+                              <p>Formas de Pago:</p>
+                              <a href="#" id="visa" onclick="return false"><img src="<?= $this->basePath('social/dist/img/credit/visa.png') ?>" alt="Visa"></a>
+                              <a href="#" id="mastercard" onclick="return false"><img src="<?= $this->basePath('social/dist/img/credit/mastercard.png') ?>" alt="Mastercard"></a>
+                              <a href="#" id="american" onclick="return false"><img src="<?= $this->basePath('social/dist/img/credit/american-express.png') ?>" alt="American Express"></a>
+                              <a href="#" id="paypal" onclick="return false"><img src="<?= $this->basePath('social/dist/img/credit/paypal2.png') ?>" alt="Paypal"></a>
+
+                              <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+                                Recuerde que esta forma de pago será a la que se le descontará mensualmente el pago de su suscripción.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Código Postal</label>
+                                  <input type="text" class="form-control" placeholder="Codígo Postal" id="codigo_postal" required data-validation-required-message="Por favor ingresa tu Tipo de Documento.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Pais</label>
+                                  <input type="email" class="form-control" placeholder="Pais" id="pais_cuenta" required data-validation-required-message="Ingresa tu mejor e-mail.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Dirección de envío 1</label>
+                                  <input type="tel" class="form-control" placeholder="Dirección de Envío 1" id="dir_envio_1" required data-validation-required-message="Por favor ingresa tu teléfono.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div><div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Dirección de envío 2</label>
+                                  <input type="tel" class="form-control" placeholder="Dirección de Envío 2" id="dir_envio_2" required data-validation-required-message="Por favor ingresa tu celular.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <div class="row control-group">
+                              <div class="form-group col-xs-12 floating-label-form-group controls">
+                                  <label>Dirección de envío 3</label>
+                                  <input type="text" class="form-control" placeholder="Dirección de Envío 3" id="dir_envio_3" required data-validation-required-message="Por favor ingresa tu Dirección.">
+                                  <p class="help-block text-danger"></p>
+                              </div>
+                          </div>
+                          <br>
+                          <div id="success"></div>
+                          <div class="row">
+                              <div class="form-group col-xs-12">
+                                  <button type="button" class="btn btn-success btn-lg" id="continuar2">Continuar <span class="glyphicon glyphicon-triangle-right" aria-hidden="false"></span></a></button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+
+      </section>
+
+
+
     </div>
-</section>
+    <div role="tabpanel" class="tab-pane fade" id="messages">
+
+      <br/>
+
+      <input id="input-image-1" name="input-image" type="file" class="file-loading" accept="image/*">
+       
+      <!-- an example modal dialog to display confirmation of the resized image -->
+      <div id="kv-success-modal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Coffee Market House</h4>
+            </div>
+            <div id="kv-success-box" class="modal-body">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br/>
+
+      <div class="container">
+          <h2>Preferencias de Usuario</h2><br/><br/>
+
+          <h5>Por favor escoge las opciones que te interesen: (puedes crear tus propias preferencias)</h5>
+          
+          <select id="preferencias" class="js-example-responsive" multiple="multiple" style="width: 75%">
+
+          
+
+          </select>          
+      </div>
+
+      <br/>
+
+      <div class="form-group col-xs-12">
+          <button type="button" class="btn btn-success btn-lg" id="continuar3"> <span class="glyphicon glyphicon-floppy-disk" aria-hidden="false"></span> Guardar</a></button>
+      </div>
+
+    </div>
+
+    <!--<div role="tabpanel" class="tab-pane fade" id="settings">.jhf..</div>-->
 
 
-<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-<div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-  <a class="btn btn-primary" href="#page-top">
-      <i class="fa fa-chevron-up"></i>
-  </a>
+  </div>
+
 </div>
 
-<!-- Portfolio Modals -->
-<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/cabin.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/cake.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/circus.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="suscripModal1" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/game.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="suscripModal2" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/safe.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="suscripModal3" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-<div class="portfolio-modal modal fade" id="suscripModal4" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-content">
-      <div class="close-modal" data-dismiss="modal">
-          <div class="lr">
-              <div class="rl">
-              </div>
-          </div>
-      </div>
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                  <div class="modal-body">
-                      <h2>Project Title</h2>
-                      <hr class="star-primary">
-                      <img src="<?= $this->basePath('landing_page/img/portfolio/submarine.png') ?>" class="img-responsive img-centered" alt="">
-                      <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                      <ul class="list-inline item-details">
-                          <li>Client:
-                              <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                              </strong>
-                          </li>
-                          <li>Date:
-                              <strong><a href="http://startbootstrap.com">April 2014</a>
-                              </strong>
-                          </li>
-                          <li>Service:
-                              <strong><a href="http://startbootstrap.com">Web Development</a>
-                              </strong>
-                          </li>
-                      </ul>
-                      <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+<script type="text/javascript" charset="utf-8">
+$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})  
+</script>
+
+<script src="<?= $this->basePath('js/controllers/bootbox.min.js') ?>"></script>
+<script src="<?= $this->basePath('js/controllers/upload.js') ?>"></script>
+
+
+
+
