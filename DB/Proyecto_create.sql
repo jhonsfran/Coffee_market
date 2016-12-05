@@ -376,7 +376,6 @@ CREATE TABLE usuario (
     usuario_num_doc int  NOT NULL,
     usuario_telefono numeric  NOT NULL,
     usuario_email varchar(60)  NOT NULL,
-    usuario_nro_cuenta int  NOT NULL,
     usuario_fecha_registro date  NOT NULL,
     usuario_cuentaban_nro_cuenta numeric  NOT NULL,
     usuario_foto_perfil varchar(250)  NOT NULL,
