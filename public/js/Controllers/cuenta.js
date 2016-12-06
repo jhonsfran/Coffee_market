@@ -13,6 +13,7 @@ var suscripcion='';
 var tipo_pago='';
 var preferencias='';
 var foto=false;
+var tipo_cuenta_user = '';
 
 
 $(document).ready(function() {
@@ -79,15 +80,15 @@ $(document).ready(function() {
 
 
 $('select').on('select2:select', function (evt) {
-  //alert($('#preferencias')find('option').attr("name"));
-  //alert($('#preferencias option:selected').html());
-  //alert($('#preferencias').val());
+
   preferencias = $('#preferencias').val();
+  tipo_cuenta_user = $('#tipo_cuenta_user').val();
 
-
-   //$('#preferencias').attr("id");
+  //alert(preferencias+'hhhh'+tipo_cuenta_user);
 
 });
+
+
 
 function redireccionar(url_direccionar){
     setTimeout(function(){ location.href=url_direccionar; }, 4000); //tiempo expresado en milisegundos
@@ -144,6 +145,7 @@ $("#register").delegate('#continuar1', 'click', function () {//buscar pedido en 
 
 
     var nombres = $("#nombres").val();
+    var password = $("#password").val();
     var nickname = $("#nickname").val();
     var apellidos = $("#apellidos").val();
     var documento = $("#documento").val();
@@ -157,6 +159,7 @@ $("#register").delegate('#continuar1', 'click', function () {//buscar pedido en 
 
     registro_usuario_new = {
         username: nickname,
+        password: password,
         nombres:nombres,
         apellidos:apellidos,
         documento:documento,
@@ -176,9 +179,13 @@ $("#register").delegate('#continuar1', 'click', function () {//buscar pedido en 
     var regex = /[\w-\.]{2,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
 
 
-    if(nombres == '' || apellidos == '' || documento == '' || email == '' || telefono == '' || celular == '' || direccion == ''){
+    if(nombres == '' || password == '' || apellidos == '' || documento == '' || email == '' || telefono == '' || celular == '' || direccion == ''){
 
         toastr.error("Debe digitar todos los campos para continuar");
+
+    }else if(isNaN(celular) || isNaN(documento) || isNaN(telefono)){
+
+        toastr.error("El número de celular, el teléfono y el número de documento deben ser un número");
 
     }else if($("#email").val().indexOf('@', 0) == -1 || $("#email").val().indexOf('.', 0) == -1){
 
@@ -196,7 +203,7 @@ $("#register").delegate('#continuar1', 'click', function () {//buscar pedido en 
 
                     
                     $('.nav-tabs a[href="#profile"]').tab('show');
-                    toastr.success("Datos del usuario ingresados correctamente");
+                    toastr.success("Todo en orden, vamos al siguiente paso...");
 
 
             }else{
@@ -258,8 +265,9 @@ $("#register").delegate('#continuar2', 'click', function () {//buscar pedido en 
 
     }else{
 
-        toastr.success("Datos de pago ingresados correctamente");
+
         $('.nav-tabs a[href="#messages"]').tab('show');
+        toastr.success("Todo en orden, queda un último paso...");
     }
 
 
@@ -275,7 +283,8 @@ $("#register").delegate('#continuar3', 'click', function () {//buscar pedido en 
         registro_cuenta_new: registro_cuenta_new,
         suscripcion: suscripcion,
         tipo_pago: tipo_pago,
-        preferencias: preferencias
+        preferencias: preferencias,
+        tipo_cuenta_user: tipo_cuenta_user
     };
 
 
@@ -299,23 +308,33 @@ $("#register").delegate('#continuar3', 'click', function () {//buscar pedido en 
             },
             callback: function (result) {
                 console.log('This was logged in the callback: ' + result);
-                toastr.success("Que buena desición has tomado");
+
+                if(!result){
+
+                    toastr.error("Has cancelado en registro");
+
+                }else{
+
+                    toastr.success("Que buena desición has tomado");
+
+                    httpPetition.ajxPost(url_ajax, data, function (data) {
+
+                        if(data.error == false){
+
+                            toastr.success("Bienvenido amante del cafe, esto es Coffee Market House");
+                            //redireccionar(Define.URL_BASE + "socialcoffee/index/index");
+
+                        }else{
+
+                            //alert(data.mensaje);
+                            toastr.error(data.mensaje);
+                        }
+
+                    });
+
+                }
+                
             }
-        });
-
-        httpPetition.ajxPost(url_ajax, data, function (data) {
-
-            if(data.error == false){
-
-                toastr.success("Bienvenido amante del cafe, esto es Coffee Market House");
-                //redireccionar(Define.URL_BASE + "socialcoffee/index/index");
-
-            }else{
-
-                //alert(data.mensaje);
-                toastr.error(data.mensaje);
-            }
-
         });
     }
 

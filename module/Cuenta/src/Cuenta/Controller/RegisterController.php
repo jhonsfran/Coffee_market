@@ -234,37 +234,38 @@ class RegisterController extends AbstractActionController {
         $cuenta_banco_new = $dataPost['registro_cuenta_new'];
         $suscripcion_new = $dataPost['suscripcion'];
         $tipo_pago = $dataPost['tipo_pago'];
-        $preferencias = $dataPost['preferencias'];
-
+        $preferencias = $dataPost['preferencias'];        
+        $suscripcion = $dataPost['suscripcion'];
         $objDateTime = new \DateTime('NOW');
 
 
-        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
 
 
-        $CrearCuentaBancaria = $this->em->getRepository('ORM\Entity\CuentaBancaria')->guardar($cuenta_banco_new);
+        try{
+
+            $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+
+            $CrearCuentaBancaria = $this->em->getRepository('ORM\Entity\CuentaBancaria')->guardar($cuenta_banco_new);
+
+            if($CrearCuentaBancaria){
+                $CrearUsuario = $this->em->getRepository('ORM\Entity\Usuario')->guardar($usuario_new,$cuenta_banco_new['num_cuenta'],$url_foto);
+            }
+
+            if($CrearUsuario){
+                $CrearCuenta = $this->em->getRepository('ORM\Entity\Cuenta')->guardar();
+            }
 
 
-        if($CrearCuentaBancaria){
+        } catch (\ORM\Exception\CustomBDException $ex) {
 
-            $CrearUsuario = $this->em->getRepository('ORM\Entity\Usuario')->guardar($usuario_new,$cuenta_banco_new['num_cuenta'],$url_foto);
-
-            //$objetoUsuario = new Usuario();
-
-            /*$idproveedor = $em->getRepository('ORM\Entity\Usuario')->find($dataPost['idProveedor']);*/
-
-            /*$objetoUsuario->setUsuariousuarioNickname($usuario_new['username'])
-                ->setUsuarioApellidos($usuario_new['apellidos'])
-                ->setUsuarioNombres($usuario_new['nombres'])
-                ->setUsuarioTipoDoc($usuario_new['tipo_documento'])
-                ->setUsuarioNumDoc($usuario_new['documento'])
-                ->setUsuarioTelefono($usuario_new['telefono'])
-                ->setUsuarioEmail($usuario_new['email'])
-                ->setUsuarioFechaRegistro($objDateTime)
-                ->setUsuarioFotoPerfil($url_foto)
-                ->setUsuarioCuentabanNroCuenta($cuenta_banco_new['num_cuenta']);*/
-
+            return new JsonModel(array(
+                    'error' => true,
+                    'mensaje' => $ex->getMessage(),
+                    'code' => $ex->getCode()                         
+                ));
         }
+
+
 
 
 

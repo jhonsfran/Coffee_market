@@ -41,9 +41,6 @@ class UsuarioRepository extends EntityRepository {
 
             $em = $this->getEntityManager();
 
-            //$cuenta_banco = $em->getRepository('ORM\Entity\CuentaBancaria')->find($id_cuenta_banco);
-
-            //$cuenta_banco = $em->find('ORM\Entity\CuentaBancaria', $id_cuenta_banco);
             $cuenta_banco = $em->getReference('ORM\Entity\CuentaBancaria', $id_cuenta_banco);
 
             echo $id_cuenta_banco;
@@ -55,8 +52,6 @@ class UsuarioRepository extends EntityRepository {
                 if (empty($this->getById($datos['username']))) {
 
                     $objetoUsuario = new Usuario();
-
-                    //$cuenta_banco[0]->__get('cuentabanNroCuenta');
 
                     $objetoUsuario->setUsuarioNickname($datos['username'])
                         ->setUsuarioApellidos($datos['apellidos'])
