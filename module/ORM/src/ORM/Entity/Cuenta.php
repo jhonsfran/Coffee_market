@@ -330,7 +330,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function setCuentaSuscripcion(\Suscripcion $cuentaSuscripcion = null)
+    public function setCuentaSuscripcion(Suscripcion $cuentaSuscripcion = null)
     {
         $this->cuentaSuscripcion = $cuentaSuscripcion;
     
@@ -354,7 +354,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function setCuentaTipo(\TipoCuenta $cuentaTipo = null)
+    public function setCuentaTipo(TipoCuenta $cuentaTipo = null)
     {
         $this->cuentaTipo = $cuentaTipo;
     
@@ -378,7 +378,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function setCuentaUsername(\Usuario $cuentaUsername = null)
+    public function setCuentaUsername(Usuario $cuentaUsername = null)
     {
         $this->cuentaUsername = $cuentaUsername;
     
@@ -402,7 +402,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function setCuentaRol(\Rol $cuentaRol = null)
+    public function setCuentaRol(Rol $cuentaRol = null)
     {
         $this->cuentaRol = $cuentaRol;
     
@@ -426,7 +426,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function addRespondePqrsPgr(\Pqrs $respondePqrsPgr)
+    public function addRespondePqrsPgr(Pqrs $respondePqrsPgr)
     {
         $this->respondePqrsPgrs[] = $respondePqrsPgr;
     
@@ -438,7 +438,7 @@ class Cuenta
      *
      * @param \Pqrs $respondePqrsPgr
      */
-    public function removeRespondePqrsPgr(\Pqrs $respondePqrsPgr)
+    public function removeRespondePqrsPgr(Pqrs $respondePqrsPgr)
     {
         $this->respondePqrsPgrs->removeElement($respondePqrsPgr);
     }
@@ -460,7 +460,7 @@ class Cuenta
      *
      * @return Cuenta
      */
-    public function addRealizapqrsPgr(\Pqrs $realizapqrsPgr)
+    public function addRealizapqrsPgr(Pqrs $realizapqrsPgr)
     {
         $this->realizapqrsPgrs[] = $realizapqrsPgr;
     
@@ -472,7 +472,7 @@ class Cuenta
      *
      * @param \Pqrs $realizapqrsPgr
      */
-    public function removeRealizapqrsPgr(\Pqrs $realizapqrsPgr)
+    public function removeRealizapqrsPgr(Pqrs $realizapqrsPgr)
     {
         $this->realizapqrsPgrs->removeElement($realizapqrsPgr);
     }

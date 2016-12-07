@@ -28,167 +28,167 @@ use Zend\Session\SessionManager;
 
 class RegisterController extends AbstractActionController {
 
-	protected $em;
+    protected $em;
 
-	public function __construct(EntityManager $entityManager)
-	{
-	$this->em = $entityManager;
-	}
+    public function __construct(EntityManager $entityManager)
+    {
+    $this->em = $entityManager;
+    }
 
 
     public function indexAction() {
 
-    	try {
-    	    $request = $this->getRequest();
-    	    $dataPost = $request->getPost();
-    	    $action = $dataPost['action'];
+        try {
+            $request = $this->getRequest();
+            $dataPost = $request->getPost();
+            $action = $dataPost['action'];
 
-    	    switch ($action) {
-
-
-    	    	case 'validar_nickname':
-
-    	    	    $objUsuario = $this->em->getRepository('ORM\Entity\Cuenta')->getByuser($dataPost['username']);
-
-    	    	    if(count($objUsuario) != 0){
-
-    	    	    	$sessionConfig = new SessionConfig();
+            switch ($action) {
 
 
-    	    	    	    $sessionConfig->setOptions(array(
-    	    	    	        'remember_me_seconds' => 3600,
-    	    	    	        'use_cookies' => true,
-    	    	    	        'cookie_httponly' => true
-    	    	    	        )
-    	    	    	    );
+                case 'validar_nickname':
 
-    	    	    	$sessionManager = new SessionManager($sessionConfig);
-    	    	    	$sessionManager->start();
-    	    	    	Container::setDefaultManager($sessionManager);
+                    $objUsuario = $this->em->getRepository('ORM\Entity\Cuenta')->getByuser($dataPost['username']);
 
-    	    	    	$user_session = new Container('user');
-    	    	    	$user_session->username = $dataPost['username'];//lo hacemos para persistir la información del usuario y poder guardar la foto
-	    	    		$user_session->url = "public/img/perfil/";//mas adelante será necesaria
+                    if(count($objUsuario) != 0){
 
-    	    	        return new JsonModel(array(
-    	    	            'existe' => TRUE                         
-    	    	        ));
-
-    	    	    }else{
-
-    	    	        return new JsonModel(array(
-    	    	            'existe' => FALSE                         
-    	    	        ));
-
-    	    	    }
+                        $sessionConfig = new SessionConfig();
 
 
-    	    	    break;
+                            $sessionConfig->setOptions(array(
+                                'remember_me_seconds' => 3600,
+                                'use_cookies' => true,
+                                'cookie_httponly' => true
+                                )
+                            );
+
+                        $sessionManager = new SessionManager($sessionConfig);
+                        $sessionManager->start();
+                        Container::setDefaultManager($sessionManager);
+
+                        $user_session = new Container('user');
+                        $user_session->username = $dataPost['username'];//lo hacemos para persistir la información del usuario y poder guardar la foto
+                        $user_session->url = "public/img/perfil/";//mas adelante será necesaria
+
+                        return new JsonModel(array(
+                            'existe' => TRUE                         
+                        ));
+
+                    }else{
+
+                        return new JsonModel(array(
+                            'existe' => FALSE                         
+                        ));
+
+                    }
 
 
-    	        case 'find_prefer':
-
-    	            $objPreferencias = $this->em->getRepository('ORM\Entity\Preferencias')->getList();
-
-    	            if(count($objPreferencias) != 0){
-
-    	                //$this->enviarconfirmacion($objUsuario->$usuarioEmail,$objUsuario->$usuarioNombres);
-
-    	                return new JsonModel(array(
-    	                    'error' => FALSE,
-    	                    'data' => $objPreferencias,
-    	                    'itemsCount' => count($objPreferencias))
-    	                );
-
-    	            }else{
-
-    	                return new JsonModel(array('itemsCount' => 0));
-    	            }
-
-    	            break;
-
-	         	case 'carga_archivo':
-
-		         	if ($_FILES['input-image']["error"] > 0){
-
-	         	  		return new JsonModel(array(
-	         	  		    'error' => true,
-	         	  		    'mensaje' => 'No se pudo cargar la foto, por favor, intentelo de nuevo'
-	         	  		    )
-	         	  		);
-
-		         	}else{
+                    break;
 
 
-							$session = new Container('user');
+                case 'find_prefer':
 
-     		    			if ($session && $session->username) {
-     		    				$nombre_user = $session->username;
-     		    			}else{
-     		    				$nombre_user = $_FILES['input-image']['name'];
-     		    			}
-     		    		
+                    $objPreferencias = $this->em->getRepository('ORM\Entity\Preferencias')->getList();
+
+                    if(count($objPreferencias) != 0){
+
+                        //$this->enviarconfirmacion($objUsuario->$usuarioEmail,$objUsuario->$usuarioNombres);
+
+                        return new JsonModel(array(
+                            'error' => FALSE,
+                            'data' => $objPreferencias,
+                            'itemsCount' => count($objPreferencias))
+                        );
+
+                    }else{
+
+                        return new JsonModel(array('itemsCount' => 0));
+                    }
+
+                    break;
+
+                case 'carga_archivo':
+
+                    if ($_FILES['input-image']["error"] > 0){
+
+                        return new JsonModel(array(
+                            'error' => true,
+                            'mensaje' => 'No se pudo cargar la foto, por favor, intentelo de nuevo'
+                            )
+                        );
+
+                    }else{
+
+
+                            $session = new Container('user');
+
+                            if ($session && $session->username) {
+                                $nombre_user = $session->username;
+                            }else{
+                                $nombre_user = $_FILES['input-image']['name'];
+                            }
+                        
 
 /*
-						echo "Nombre: " . $_FILES['input-image']['name'] . "<br>";
-						echo "Tipo: " . $_FILES['input-image']['type'] . "<br>";
-						echo "tamaño" . ($_FILES["input-image"]["size"] / 1024) . " kB<br>";
-						echo "Carpeta temporal: " . $_FILES['input-image']['tmp_name'];
+                        echo "Nombre: " . $_FILES['input-image']['name'] . "<br>";
+                        echo "Tipo: " . $_FILES['input-image']['type'] . "<br>";
+                        echo "tamaño" . ($_FILES["input-image"]["size"] / 1024) . " kB<br>";
+                        echo "Carpeta temporal: " . $_FILES['input-image']['tmp_name'];
 
-						*/
+                        */
 
-							//Nombre de la carpeta del aspirante donde va guardar el documento ** Preguntar a lucho si por codigo o documento para hacer la consulta SQL
-							//$nombre_doc = $_FILES['input-image']['name'];//necesito el nombre del documento
-							//ver que id de documento es para asignar el nombre
-							//necesito el documento de identidad del aspirante
-							//$url = "***".$asp_codigo."/".$nombre_doc;
-							//echo $url;
-		         		
-		         		//Crea Carpeta donde se van a guardar las fotos
+                            //Nombre de la carpeta del aspirante donde va guardar el documento ** Preguntar a lucho si por codigo o documento para hacer la consulta SQL
+                            //$nombre_doc = $_FILES['input-image']['name'];//necesito el nombre del documento
+                            //ver que id de documento es para asignar el nombre
+                            //necesito el documento de identidad del aspirante
+                            //$url = "***".$asp_codigo."/".$nombre_doc;
+                            //echo $url;
+                        
+                        //Crea Carpeta donde se van a guardar las fotos
 
-		         		if(!file_exists("public/img/perfil")){
-		         		  mkdir("public/img/perfil", 0777, true);//crea carpeta
-		         		  chmod("public/img/perfil", 0777);
-		         	  	}
+                        if(!file_exists("public/img/perfil")){
+                          mkdir("public/img/perfil", 0777, true);//crea carpeta
+                          chmod("public/img/perfil", 0777);
+                        }
 
 
-		         	  	$tmp = explode('.', $_FILES['input-image']['name']);
-		         	  	$extension = end($tmp);
+                        $tmp = explode('.', $_FILES['input-image']['name']);
+                        $extension = end($tmp);
 
-		         	  	$nombre_archivo = $nombre_user.".".$extension;
-		         	  	$url_foto = "public/img/perfil/".$nombre_archivo;
-		         		move_uploaded_file ($_FILES['input-image']['tmp_name'], "public/img/perfil/{$_FILES['input-image']['name']}");
-		         		chmod("public/img/perfil/{$_FILES['input-image']['name']}", 0777);
-		         		rename("public/img/perfil/{$_FILES['input-image']['name']}", $url_foto);
+                        $nombre_archivo = $nombre_user.".".$extension;
+                        $url_foto = "public/img/perfil/".$nombre_archivo;
+                        move_uploaded_file ($_FILES['input-image']['tmp_name'], "public/img/perfil/{$_FILES['input-image']['name']}");
+                        chmod("public/img/perfil/{$_FILES['input-image']['name']}", 0777);
+                        rename("public/img/perfil/{$_FILES['input-image']['name']}", $url_foto);
 
-		         		$session->url_perfil = $url_foto;
+                        $session->url_perfil = $url_foto;
 
-	         	        return new JsonModel(array(
-	         	        	'link' => 'Se cargó exitosamente'
-	         	            )
-	         	        );
+                        return new JsonModel(array(
+                            'link' => 'Se cargó exitosamente'
+                            )
+                        );
 
-	         	    }
+                    }
 
-	         	    break;
+                    break;
 
-    	    	case 'guardar':
+                case 'guardar':
 
-    	    	    $guardo = $this->guardar($dataPost);
+                    $guardo = $this->guardar($dataPost);
 
-    	    	    /*if($guardo){
+                    /*if($guardo){
 
-    	    	        return new JsonModel(array(
-    	    	            'existe' => TRUE                         
-    	    	        ));
+                        return new JsonModel(array(
+                            'existe' => TRUE                         
+                        ));
 
-    	    	    }else{
+                    }else{
 
-    	    	        return new JsonModel(array(
-    	    	            'data' => $dataPost                         
-    	    	        ));
+                        return new JsonModel(array(
+                            'data' => $dataPost                         
+                        ));
 
-    	    	    }*/
+                    }*/
 /*
                     return new JsonModel(array(
                             'data' => $dataPost                         
@@ -196,15 +196,15 @@ class RegisterController extends AbstractActionController {
                         */
 
 
-    	    	    break;
+                    break;
 
-    	        default :
-    	            return new ViewModel();
-    	            break;
-    	    }
+                default :
+                    return new ViewModel();
+                    break;
+            }
 
 
-    	} catch (\ORM\Exception\CustomBDException $ex) {
+        } catch (\ORM\Exception\CustomBDException $ex) {
 
             return new JsonModel(array(
                     'error' => true,
@@ -212,9 +212,9 @@ class RegisterController extends AbstractActionController {
                     'code' => $ex->getCode()                         
                 ));
 
-    	    //echo "-->mensaje: " . $ex->getMessage() . "\n";
-    	    //echo "-->code: " . $ex->getCode() . "\n";
-    	}
+            //echo "-->mensaje: " . $ex->getMessage() . "\n";
+            //echo "-->code: " . $ex->getCode() . "\n";
+        }
 
     }
 
@@ -252,7 +252,53 @@ class RegisterController extends AbstractActionController {
             }
 
             if($CrearUsuario){
-                $CrearCuenta = $this->em->getRepository('ORM\Entity\Cuenta')->guardar();
+
+                $dir[] = $usuario_new['direccion'];
+                $dir[] = $cuenta_banco_new['dir_envio_1'];
+                $dir[] = $cuenta_banco_new['dir_envio_2'];
+                $dir[] = $cuenta_banco_new['dir_envio_3'];
+
+                for ($i=0; $i < 3; $i++) { 
+                    
+                    if($dir[$i] != ''){
+                        $IngresarDirecciones = $this->em->getRepository('ORM\Entity\DireccionesUsuario')->guardar($usuario_new['username'],$dir[$i]);
+                    }
+                }
+
+                if($dataPost['tipo_cuenta_user'] == 1 || $dataPost['tipo_cuenta_user'] == 2){//usuario
+                    $rol = 1;
+                }else if($dataPost['tipo_cuenta_user'] == 3){
+                    $rol = 2;
+                }else if($dataPost['tipo_cuenta_user'] == 4){
+                    $rol = 3;
+                }else {
+                    $rol = 1;
+                }
+
+
+                $Suscripcion = $this->em->getRepository('ORM\Entity\Suscripcion')->guardarReturn(100,15,$suscripcion,1,1,500);//mientras tanto se mandan parametros por defecto, espero el modulo de catalogo
+
+                if(count($Suscripcion) != 0){
+                    $CrearCuenta = $this->em->getRepository('ORM\Entity\Cuenta')->guardar($usuario_new['username'],$rol,$Suscripcion,$dataPost['tipo_cuenta_user'],$usuario_new['password']);
+                }
+
+                $CrearCuenta = $this->em->getRepository('ORM\Entity\Cuenta')->guardar($id_prefer,$id_cuenta);
+
+            }
+
+            if($CrearCuenta){
+
+                return new JsonModel(array(
+                       'error' => false,
+                       'mensaje' => 'Registro guardado exitosamente'                         
+                   )); 
+
+            }else{
+
+                return new JsonModel(array(
+                       'error' => true,
+                       'mensaje' => 'Falló la insersion en alguna de las tablas. Por favor intentelo de nuevo.'                         
+                   )); 
             }
 
 

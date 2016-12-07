@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-12-02 20:05:43.349
+-- Last modification date: 2016-12-07 20:42:53.88
 
 -- tables
 -- Table: agregar_deseo
@@ -29,14 +29,6 @@ CREATE TABLE calificar (
     calificar_catalogo_id_catalogo int  NOT NULL,
     calificar_fecha date  NOT NULL,
     CONSTRAINT calificar_pk PRIMARY KEY (calificar_id)
-);
-
--- Table: casero
-CREATE TABLE casero (
-    casero_suscripcion_id_suscripcion int  NOT NULL,
-    casero_precio numeric  NOT NULL,
-    casero_cantidad int  NOT NULL,
-    CONSTRAINT casero_pk PRIMARY KEY (casero_suscripcion_id_suscripcion)
 );
 
 -- Table: catalogo
@@ -138,7 +130,6 @@ CREATE TABLE cuenta_bancaria (
     cuentaban_nro_cuenta numeric  NOT NULL,
     cuentaban_entidad_bancaria varchar(100)  NOT NULL,
     cuentaban_tipo_tarjeta varchar(100)  NOT NULL,
-    cuentaban_ciudad varchar(80)  NOT NULL,
     cuentaban_codigo_postal numeric  NOT NULL,
     cuentaban_pais varchar(80)  NOT NULL,
     CONSTRAINT cuenta_bancaria_pk PRIMARY KEY (cuentaban_nro_cuenta)
@@ -169,24 +160,6 @@ CREATE TABLE domicilio (
     domicilio_fecha_entrega date  NOT NULL,
     domicilio_fecha_salida date  NOT NULL,
     CONSTRAINT domicilio_pk PRIMARY KEY (domicilio_id_domicilio)
-);
-
--- Table: empresarial
-CREATE TABLE empresarial (
-    suscripcion_suscripcion_id_suscripcion int  NOT NULL,
-    empresarial_periodicidad varchar(100)  NOT NULL,
-    empresarial_precio numeric  NOT NULL,
-    empresarial_cantidad int  NOT NULL,
-    CONSTRAINT empresarial_pk PRIMARY KEY (suscripcion_suscripcion_id_suscripcion)
-);
-
--- Table: especial
-CREATE TABLE especial (
-    suscripcion_suscripcion_id_suscripcion int  NOT NULL,
-    suscripcion_periodicidad varchar(100)  NOT NULL,
-    suscripcion_precio numeric  NOT NULL,
-    suscripcion_cantidad int  NOT NULL,
-    CONSTRAINT especial_pk PRIMARY KEY (suscripcion_suscripcion_id_suscripcion)
 );
 
 -- Table: finca
@@ -287,13 +260,6 @@ CREATE TABLE preferencias (
     CONSTRAINT preferencias_pk PRIMARY KEY (preferencia_id_preferencia)
 );
 
--- Table: probadita
-CREATE TABLE probadita (
-    probadita_suscripcion_id_suscripcion int  NOT NULL,
-    probadita_precio numeric  NOT NULL,
-    CONSTRAINT probadita_pk PRIMARY KEY (probadita_suscripcion_id_suscripcion)
-);
-
 -- Table: producto
 CREATE TABLE producto (
     producto_id_producto serial  NOT NULL,
@@ -349,6 +315,10 @@ CREATE TABLE suscripcion (
     suscripcion_fecha date  NOT NULL,
     suscripcion_estado boolean  NOT NULL,
     suscripcion_producto_id_producto int  NOT NULL,
+    suscripcion_tipo_id int  NOT NULL,
+    suscripcion_cantidad int  NOT NULL,
+    suscripcion_precio int  NOT NULL,
+    suscripcion_periodicidad int  NOT NULL,
     CONSTRAINT suscripcion_pk PRIMARY KEY (suscripcion_id_suscripcion)
 );
 
@@ -367,6 +337,14 @@ CREATE TABLE tipo_cuenta (
     CONSTRAINT tipo_cuenta_pk PRIMARY KEY (tipo_cuenta_id_tipo)
 );
 
+-- Table: tipo_suscripcion
+CREATE TABLE tipo_suscripcion (
+    tp_suscri_id serial  NOT NULL,
+    tp_suscri_nombre char(50)  NOT NULL,
+    tp_suscri_fecha date  NOT NULL,
+    CONSTRAINT tipo_suscripcion_pk PRIMARY KEY (tp_suscri_id)
+);
+
 -- Table: usuario
 CREATE TABLE usuario (
     usuario_nickname varchar(50)  NOT NULL,
@@ -376,6 +354,7 @@ CREATE TABLE usuario (
     usuario_num_doc int  NOT NULL,
     usuario_telefono numeric  NOT NULL,
     usuario_email varchar(60)  NOT NULL,
+    usuario_nro_cuenta int  NOT NULL,
     usuario_fecha_registro date  NOT NULL,
     usuario_cuentaban_nro_cuenta numeric  NOT NULL,
     usuario_foto_perfil varchar(250)  NOT NULL,
@@ -503,15 +482,6 @@ ALTER TABLE calificar ADD CONSTRAINT calificar_catalogo
 ALTER TABLE calificar ADD CONSTRAINT calificar_usuario
     FOREIGN KEY (calificar_usuario_nickname)
     REFERENCES usuario (usuario_nickname) 
-    ON UPDATE  CASCADE 
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: casero_suscripcion (table: casero)
-ALTER TABLE casero ADD CONSTRAINT casero_suscripcion
-    FOREIGN KEY (casero_suscripcion_id_suscripcion)
-    REFERENCES suscripcion (suscripcion_id_suscripcion) 
     ON UPDATE  CASCADE 
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
@@ -688,24 +658,6 @@ ALTER TABLE direcciones_usuario ADD CONSTRAINT direcciones_usuario_usuario
     INITIALLY IMMEDIATE
 ;
 
--- Reference: empresarial_suscripcion (table: empresarial)
-ALTER TABLE empresarial ADD CONSTRAINT empresarial_suscripcion
-    FOREIGN KEY (suscripcion_suscripcion_id_suscripcion)
-    REFERENCES suscripcion (suscripcion_id_suscripcion) 
-    ON UPDATE  CASCADE 
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
--- Reference: especial_suscripcion (table: especial)
-ALTER TABLE especial ADD CONSTRAINT especial_suscripcion
-    FOREIGN KEY (suscripcion_suscripcion_id_suscripcion)
-    REFERENCES suscripcion (suscripcion_id_suscripcion) 
-    ON UPDATE  CASCADE 
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
 -- Reference: me_gusta_compartir_compra (table: me_gusta)
 ALTER TABLE me_gusta ADD CONSTRAINT me_gusta_compartir_compra
     FOREIGN KEY (me_gusta_compartir_id_compartir)
@@ -778,15 +730,6 @@ ALTER TABLE preferencia_cuenta ADD CONSTRAINT preferencia_cuenta_preferencias
     INITIALLY IMMEDIATE
 ;
 
--- Reference: probadita_suscripcion (table: probadita)
-ALTER TABLE probadita ADD CONSTRAINT probadita_suscripcion
-    FOREIGN KEY (probadita_suscripcion_id_suscripcion)
-    REFERENCES suscripcion (suscripcion_id_suscripcion) 
-    ON UPDATE  CASCADE 
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
 -- Reference: realiza_cuenta (table: realiza)
 ALTER TABLE realiza ADD CONSTRAINT realiza_cuenta
     FOREIGN KEY (realizacuenta_id_cuenta)
@@ -837,6 +780,14 @@ ALTER TABLE suscripcion ADD CONSTRAINT suscripcion_producto
     FOREIGN KEY (suscripcion_producto_id_producto)
     REFERENCES producto (producto_id_producto) 
     ON UPDATE  CASCADE 
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: suscripcion_tipo_suscripcion (table: suscripcion)
+ALTER TABLE suscripcion ADD CONSTRAINT suscripcion_tipo_suscripcion
+    FOREIGN KEY (suscripcion_tipo_id)
+    REFERENCES tipo_suscripcion (tp_suscri_id)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

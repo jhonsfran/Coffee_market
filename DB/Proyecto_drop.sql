@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2016-12-02 20:05:43.349
+-- Last modification date: 2016-12-07 20:42:53.88
 
 -- foreign keys
 ALTER TABLE responde
@@ -40,9 +40,6 @@ ALTER TABLE calificar
 
 ALTER TABLE calificar
     DROP CONSTRAINT calificar_usuario;
-
-ALTER TABLE casero
-    DROP CONSTRAINT casero_suscripcion;
 
 ALTER TABLE comentario
     DROP CONSTRAINT comentar_catalogo;
@@ -101,12 +98,6 @@ ALTER TABLE direccion_domicilio
 ALTER TABLE direcciones_usuario
     DROP CONSTRAINT direcciones_usuario_usuario;
 
-ALTER TABLE empresarial
-    DROP CONSTRAINT empresarial_suscripcion;
-
-ALTER TABLE especial
-    DROP CONSTRAINT especial_suscripcion;
-
 ALTER TABLE me_gusta
     DROP CONSTRAINT me_gusta_compartir_compra;
 
@@ -131,9 +122,6 @@ ALTER TABLE preferencia_cuenta
 ALTER TABLE preferencia_cuenta
     DROP CONSTRAINT preferencia_cuenta_preferencias;
 
-ALTER TABLE probadita
-    DROP CONSTRAINT probadita_suscripcion;
-
 ALTER TABLE realiza
     DROP CONSTRAINT realiza_cuenta;
 
@@ -152,6 +140,9 @@ ALTER TABLE rol_modulo
 ALTER TABLE suscripcion
     DROP CONSTRAINT suscripcion_producto;
 
+ALTER TABLE suscripcion
+    DROP CONSTRAINT suscripcion_tipo_suscripcion;
+
 ALTER TABLE usuario
     DROP CONSTRAINT usuario_cuenta_bancaria;
 
@@ -161,8 +152,6 @@ DROP TABLE agregar_deseo;
 DROP TABLE cafe;
 
 DROP TABLE calificar;
-
-DROP TABLE casero;
 
 DROP TABLE catalogo;
 
@@ -192,10 +181,6 @@ DROP TABLE direcciones_usuario;
 
 DROP TABLE domicilio;
 
-DROP TABLE empresarial;
-
-DROP TABLE especial;
-
 DROP TABLE finca;
 
 DROP TABLE me_gusta;
@@ -220,8 +205,6 @@ DROP TABLE preferencia_cuenta;
 
 DROP TABLE preferencias;
 
-DROP TABLE probadita;
-
 DROP TABLE producto;
 
 DROP TABLE productor;
@@ -239,6 +222,8 @@ DROP TABLE suscripcion;
 DROP TABLE tipo;
 
 DROP TABLE tipo_cuenta;
+
+DROP TABLE tipo_suscripcion;
 
 DROP TABLE usuario;
 

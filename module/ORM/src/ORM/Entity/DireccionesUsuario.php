@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DireccionesUsuario
  *
  * @ORM\Table(name="direcciones_usuario", indexes={@ORM\Index(name="IDX_BA625DD525E9710", columns={"dirusuario_nickname"})})
- * @ORM\Entity
+  * @ORM\Entity(repositoryClass="ORM\Repository\DireccionesUsuarioRepository")
  */
 class DireccionesUsuario
 {
@@ -68,7 +68,7 @@ class DireccionesUsuario
      *
      * @return DireccionesUsuario
      */
-    public function setDirusuarioNickname(\Usuario $dirusuarioNickname)
+    public function setDirusuarioNickname(Usuario $dirusuarioNickname)
     {
         $this->dirusuarioNickname = $dirusuarioNickname;
     

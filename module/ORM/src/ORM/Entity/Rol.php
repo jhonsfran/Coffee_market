@@ -4,8 +4,8 @@
 namespace ORM\Entity;
 
 
-
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections;
 
 /**
  * Rol
@@ -158,7 +158,7 @@ class Rol
      *
      * @return Rol
      */
-    public function addRolmoduModulo(\Modulo $rolmoduModulo)
+    public function addRolmoduModulo(Modulo $rolmoduModulo)
     {
         $this->rolmoduModulo[] = $rolmoduModulo;
     
@@ -170,7 +170,7 @@ class Rol
      *
      * @param \Modulo $rolmoduModulo
      */
-    public function removeRolmoduModulo(\Modulo $rolmoduModulo)
+    public function removeRolmoduModulo(Modulo $rolmoduModulo)
     {
         $this->rolmoduModulo->removeElement($rolmoduModulo);
     }

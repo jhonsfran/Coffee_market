@@ -6,12 +6,13 @@ namespace ORM\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections;
 
 /**
  * Producto
  *
  * @ORM\Table(name="producto")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ORM\Repository\SuscripcionRepository")
  */
 class Producto
 {
@@ -220,7 +221,7 @@ class Producto
      *
      * @return Producto
      */
-    public function addOtroTipoOtroTipo(\OtroTipoProducto $otroTipoOtroTipo)
+    public function addOtroTipoOtroTipo(OtroTipoProducto $otroTipoOtroTipo)
     {
         $this->otroTipoOtroTipo[] = $otroTipoOtroTipo;
     
@@ -232,7 +233,7 @@ class Producto
      *
      * @param \OtroTipoProducto $otroTipoOtroTipo
      */
-    public function removeOtroTipoOtroTipo(\OtroTipoProducto $otroTipoOtroTipo)
+    public function removeOtroTipoOtroTipo(OtroTipoProducto $otroTipoOtroTipo)
     {
         $this->otroTipoOtroTipo->removeElement($otroTipoOtroTipo);
     }

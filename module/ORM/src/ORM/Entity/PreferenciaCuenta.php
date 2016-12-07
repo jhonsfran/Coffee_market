@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * PreferenciaCuenta
  *
  * @ORM\Table(name="preferencia_cuenta", indexes={@ORM\Index(name="IDX_DE6BE5071A2EAC64", columns={"prefcuenta_id_preferencia"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ORM\Repository\PreferenciaCuentaRepository")
  */
 class PreferenciaCuenta
 {
@@ -45,7 +45,7 @@ class PreferenciaCuenta
      *
      * @return PreferenciaCuenta
      */
-    public function setPrefcuentaCuenta(\Cuenta $prefcuentaCuenta)
+    public function setPrefcuentaCuenta(Cuenta $prefcuentaCuenta)
     {
         $this->prefcuentaCuenta = $prefcuentaCuenta;
     
@@ -69,7 +69,7 @@ class PreferenciaCuenta
      *
      * @return PreferenciaCuenta
      */
-    public function setPrefcuentaPreferencia(\Preferencias $prefcuentaPreferencia = null)
+    public function setPrefcuentaPreferencia(Preferencias $prefcuentaPreferencia = null)
     {
         $this->prefcuentaPreferencia = $prefcuentaPreferencia;
     
